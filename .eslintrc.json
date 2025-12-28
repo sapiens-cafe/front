@@ -1,0 +1,9 @@
+{
+  "extends": ["next", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "warn",
+    "no-unused-vars": "warn", // example ESLint rule
+    "react/jsx-indent": ["warn", 2] // example formatting rule
+  }
+}
