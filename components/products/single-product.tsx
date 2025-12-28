@@ -4,52 +4,14 @@ import { Product } from '@/types/types';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { IconCheck } from '@tabler/icons-react';
-import { cn, formatNumber } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { strapiImage } from '@/lib/strapi/strapiImage';
 import dayjs from 'dayjs';
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger } from '../ui/animated-modal';
-import fetchStrapiApi from '@/lib/strapi/strapiApi';
-import { Link } from 'next-view-transitions';
-import { Button } from '../elements/button';
+
 import { EventSubscriberModal } from './event-subscriber-modal';
 
 export const SingleProduct = ({ product }: { product: Product }) => {
   const [activeThumbnail, setActiveThumbnail] = useState(strapiImage(product.images[0].url));
-  const [isAdding, setIsAdding] = useState(false);
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [email, setEmail] = React.useState('');
-  const [phone, setPhone] = React.useState('');
-  const [hasAgreedToTerms, setHasAgreedToTerms] = useState(false);
-  const [hasSubscribed, setHasSubscribed] = useState(false);
-  console.log('product', product);
-  const addSubscriber = async () => {
-    setIsAdding(true);
-    fetchStrapiApi(
-      'event-subscribers',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          data: {
-            firstname,
-            lastname,
-            email,
-            phone,
-            event: product.documentId,
-          },
-        }),
-      },
-      true
-    ).then(() => {
-      setIsAdding(false);
-      setEmail('');
-      setFirstname('');
-      setLastname('');
-      setPhone('');
-      setHasSubscribed(true);
-    });
-  };
 
   return (
     <div className="bg-gradient-to-b from-neutral-900 to-neutral-950  p-4 md:p-10 rounded-md">

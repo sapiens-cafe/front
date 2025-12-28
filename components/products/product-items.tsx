@@ -11,7 +11,6 @@ const pastEventTitle = 'Événements passés';
 const futureEventTitle = 'Événements à venir';
 
 export const ProductItems = ({
-  heading = 'Événements phares',
   sub_heading = 'Découvrez les rendez-vous qui ont captivé notre communauté.',
   products,
   locale,
@@ -66,7 +65,6 @@ export const ProductItems = ({
 };
 
 const ProductItem = ({ product, locale }: { product: Product; locale: string }) => {
-  console.log('product', product);
   return (
     <div>
       <Link href={`/${locale}/products/${product.slug}` as never} className="group relative block">
