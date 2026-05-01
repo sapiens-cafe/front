@@ -6,7 +6,6 @@ import { useMotionValueEvent, useScroll, motion, AnimatePresence } from 'framer-
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { Link } from 'next-view-transitions';
-import { LocaleSwitcher } from '../locale-switcher';
 
 type Props = {
   leftNavbarItems: {
@@ -20,10 +19,9 @@ type Props = {
     target?: string;
   }[];
   logo: any;
-  locale: string;
 };
 
-export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale }: Props) => {
+export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo }: Props) => {
   const { scrollY } = useScroll();
 
   const [showBackground, setShowBackground] = useState(false);
@@ -62,7 +60,7 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
         )}
       </AnimatePresence>
       <div className="flex flex-row gap-2 items-center">
-        <Logo locale={locale} image={logo?.image} />
+        <Logo image={logo?.image} />
         <div className="flex items-center gap-1.5">
           {leftNavbarItems.map((item, index) =>
             item.text === 'Blog' ? (
@@ -70,11 +68,7 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
                 Blog
               </div>
             ) : (
-              <NavbarItem
-                href={`/${locale}${item.URL}` as never}
-                key={item.text}
-                target={item.target}
-              >
+              <NavbarItem href={item.URL as never} key={item.text} target={item.target}>
                 {item.text}
               </NavbarItem>
             )
@@ -82,14 +76,12 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
         </div>
       </div>
       <div className="flex space-x-2 items-center">
-        <LocaleSwitcher currentLocale={locale} />
-
         {rightNavbarItems.map((item, index) => (
           <Button
             key={item.text}
             variant={index === rightNavbarItems.length - 1 ? 'primary' : 'simple'}
             as={Link}
-            href={`/${locale}${item.URL}`}
+            href={item.URL}
           >
             {item.text}
           </Button>

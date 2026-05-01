@@ -1,12 +1,17 @@
 'use client';
 import React, { useState } from 'react';
-import { Product } from '@/types/types';
 import { cn } from '@/lib/utils';
 
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger } from '../ui/animated-modal';
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalTrigger,
+} from '@/components/ui/animated-modal';
 import fetchStrapiApi from '@/lib/strapi/strapiApi';
 import { Link } from 'next-view-transitions';
-import { Button } from '../elements/button';
+import { Button } from '@/components/elements/button';
 
 export const EventSubscriberModal = ({ productId }: { productId: string }) => {
   const [isAdding, setIsAdding] = useState(false);
@@ -105,7 +110,7 @@ export const EventSubscriberModal = ({ productId }: { productId: string }) => {
                   }
                 </label>
               </div>
-              <Link href="fr/general-conditions" target="_blank">
+              <Link href="/general-conditions" target="_blank">
                 <p className={cn('text-sm mt-4 text-neutral-500 underline cursor-pointer')}>
                   {'Lire la politique de confidentialité'}
                 </p>

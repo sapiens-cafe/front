@@ -1,3 +1,11 @@
+export interface MenuItem {
+  id: number;
+  name: string;
+  slug?: string;
+  price: number;
+  images: any[];
+}
+
 export interface Category {
   name: string;
 }
@@ -21,13 +29,13 @@ export interface Article {
   categories: Category[];
 }
 
-export interface Product {
+export interface Event {
   id: number;
   name: string;
   slug: string;
   description: string;
   price: number;
-  plans: any[];
+  audiences: any[];
   perks: any[];
   featured?: boolean;
   images: any[];

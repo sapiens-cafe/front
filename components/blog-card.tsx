@@ -9,11 +9,11 @@ import { format } from 'date-fns';
 import { strapiImage } from '@/lib/strapi/strapiImage';
 import { Article } from '@/types/types';
 
-export const BlogCard = ({ article, locale }: { article: Article; locale: string }) => {
+export const BlogCard = ({ article }: { article: Article }) => {
   return (
     <Link
       className="shadow-derek grid grid-cols-1 md:grid-cols-2  rounded-3xl group border border-transparent hover:border-neutral-800 w-full hover:bg-neutral-900  overflow-hidden  hover:scale-[1.02] transition duration-200"
-      href={`/${locale}/blog/${article.slug}`}
+      href={`/blog/${article.slug}`}
     >
       <div className="">
         {article.image ? (
@@ -51,14 +51,6 @@ export const BlogCard = ({ article, locale }: { article: Article; locale: string
           </p>
         </div>
         <div className="flex space-x-2 items-center  mt-6">
-          {/* <Image
-            src={article.authorAvatar}
-            alt={article.author}
-            width={20}
-            height={20}
-            className="rounded-full h-5 w-5"
-          /> */}
-          {/* <p className="text-sm font-normal text-muted">{article.author}</p> */}
           <div className="h-1 w-1 bg-neutral-300 rounded-full"></div>
           <p className="text-neutral-300 text-sm  max-w-xl group-hover:text-white transition duration-200">
             {format(new Date(article.publishedAt), 'MMMM dd, yyyy')}
@@ -69,11 +61,11 @@ export const BlogCard = ({ article, locale }: { article: Article; locale: string
   );
 };
 
-export const BlogCardVertical = ({ article, locale }: { article: Article; locale: string }) => {
+export const BlogCardVertical = ({ article }: { article: Article }) => {
   return (
     <Link
       className="shadow-derek   rounded-3xl group border border-transparent hover:border-neutral-800 w-full hover:bg-neutral-900  overflow-hidden  hover:scale-[1.02] transition duration-200"
-      href={`/${locale}/blog/${article.slug}`}
+      href={`/blog/${article.slug}`}
     >
       <div className="">
         {article.image ? (
@@ -111,14 +103,6 @@ export const BlogCardVertical = ({ article, locale }: { article: Article; locale
           </p>
         </div>
         <div className="flex space-x-2 items-center  mt-6">
-          {/* <Image
-            src={article.authorAvatar}
-            alt={article.author}
-            width={20}
-            height={20}
-            className="rounded-full h-5 w-5"
-          />
-          <p className="text-sm font-normal text-muted">{article.author}</p> */}
           <div className="h-1 w-1 bg-neutral-300 rounded-full"></div>
           <p className="text-neutral-300 text-sm  max-w-xl group-hover:text-white transition duration-200">
             {format(new Date(article.publishedAt), 'MMMM dd, yyyy')}

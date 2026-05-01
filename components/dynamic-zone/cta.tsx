@@ -13,12 +13,10 @@ export const CTA = ({
   heading,
   sub_heading,
   CTAs,
-  locale,
 }: {
   heading: string;
   sub_heading: string;
   CTAs: any[];
-  locale: string;
 }) => {
   const [email, setEmail] = React.useState('');
   const [enabled, setEnabled] = React.useState(false);
@@ -89,7 +87,7 @@ export const CTA = ({
                         }
                       </label>
                     </div>
-                    <Link href="fr/general-conditions" target="_blank">
+                    <Link href="/general-conditions" target="_blank">
                       <p className={cn('text-sm mt-4 text-neutral-500 underline cursor-pointer')}>
                         {'Lire la politique de confidentialité'}
                       </p>

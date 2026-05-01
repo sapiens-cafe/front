@@ -52,7 +52,7 @@ export const Features = ({
 
           {ray_card && (
             <Card className={`md:col-span-${convertWordToNumber(ray_card?.span) || '1'}`}>
-              <Link className="cursor-pointer" href={`/fr/food-menu?index=0`}>
+              <Link className="cursor-pointer" href={`/food-menu?index=0`}>
                 <SkeletonTwo />
               </Link>
               <CardTitle>{ray_card.title}</CardTitle>
@@ -62,7 +62,7 @@ export const Features = ({
 
           {graph_card && (
             <Card className={`md:col-span-${convertWordToNumber(ray_card?.span) || '1'}`}>
-              <Link className="cursor-pointer" href={`/fr/food-menu?index=1`}>
+              <Link className="cursor-pointer" href={`/food-menu?index=1`}>
                 <Image
                   style={{
                     width: '100%',

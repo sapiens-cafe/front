@@ -6,11 +6,11 @@ import { BlurImage } from './blur-image';
 import { strapiImage } from '@/lib/strapi/strapiImage';
 import { Image } from '@/types/types';
 
-export const Logo = ({ image, locale }: { image?: Image; locale?: string }) => {
+export const Logo = ({ image }: { image?: Image }) => {
   if (image) {
     return (
       <Link
-        href={`/${locale || 'fr'}`}
+        href="/"
         className="font-normal flex space-x-2 items-center text-sm mr-4  text-black   relative z-20"
       >
         <BlurImage

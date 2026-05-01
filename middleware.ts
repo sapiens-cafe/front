@@ -1,42 +1,16 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-
-import { i18n } from '@/i18n.config'
-
-import { match as matchLocale } from '@formatjs/intl-localematcher'
-import Negotiator from 'negotiator'
-
-function getLocale(request: NextRequest): string | undefined {
-  const negotiatorHeaders: Record<string, string> = {}
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value))
-
-  // @ts-ignore locales are readonly
-  const locales: string[] = i18n.locales
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages()
-
-  const locale = matchLocale(languages, locales, i18n.defaultLocale)
-  return locale
-}
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname
-  const pathnameIsMissingLocale = i18n.locales.every(
-    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  )
+  const pathname = request.nextUrl.pathname;
 
-  // Redirect if there is no locale
-  if (pathnameIsMissingLocale) {
-    const locale = getLocale(request)
-    return NextResponse.redirect(
-      new URL(
-        `/fr`,
-        request.url
-      )
-    )
+  // Redirect legacy /fr/* URLs to flat /*  (301 permanent)
+  if (pathname === '/fr' || pathname.startsWith('/fr/')) {
+    const newPath = pathname === '/fr' ? '/' : pathname.slice(3);
+    return NextResponse.redirect(new URL(newPath, request.url), { status: 301 });
   }
 }
 
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
-}
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)'],
+};

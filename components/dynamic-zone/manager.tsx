@@ -9,7 +9,6 @@ interface DynamicZoneComponent {
 
 interface Props {
   dynamicZone: DynamicZoneComponent[];
-  locale: string;
 }
 
 const componentMapping: { [key: string]: any } = {
@@ -17,11 +16,6 @@ const componentMapping: { [key: string]: any } = {
   'dynamic-zone.features': dynamic(() => import('./features').then((mod) => mod.Features), {
     ssr: false,
   }),
-
-  'dynamic-zone.testimonials': dynamic(
-    () => import('./testimonials').then((mod) => mod.Testimonials),
-    { ssr: false }
-  ),
   'dynamic-zone.how-it-works': dynamic(
     () => import('./how-it-works').then((mod) => mod.HowItWorks),
     { ssr: false }
@@ -55,7 +49,7 @@ const componentMapping: { [key: string]: any } = {
   ),
 };
 
-const DynamicZoneManager: React.FC<Props> = ({ dynamicZone, locale }) => {
+const DynamicZoneManager: React.FC<Props> = ({ dynamicZone }) => {
   return (
     <div>
       {dynamicZone.map((componentData) => {
@@ -64,7 +58,7 @@ const DynamicZoneManager: React.FC<Props> = ({ dynamicZone, locale }) => {
           console.warn(`No component found for: ${componentData.__component}`);
           return null;
         }
-        return <Component key={componentData.id} {...componentData} locale={locale} />;
+        return <Component key={componentData.id} {...componentData} />;
       })}
     </div>
   );

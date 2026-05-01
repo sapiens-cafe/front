@@ -15,12 +15,10 @@ export const Hero = ({
   heading,
   sub_heading,
   CTAs,
-  locale,
 }: {
   heading: string;
   sub_heading: string;
   CTAs: any[];
-  locale: string;
 }) => {
   return (
     <div className="overflow-hidden relative flex flex-col items-center justify-center">

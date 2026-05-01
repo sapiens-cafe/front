@@ -1,13 +1,13 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
-import { Product } from '@/types/types';
+import { MenuItem } from '@/types/types';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { strapiImage } from '@/lib/strapi/strapiImage';
 import { useSearchParams } from 'next/navigation';
 
-export const FoodMenuImages = ({ product }: { product: Product }) => {
+export const FoodMenuImages = ({ product }: { product: MenuItem }) => {
   const query = useMemo(() => new URLSearchParams(window.location.search), []);
   const [activeThumbnail, setActiveThumbnail] = useState(
     strapiImage(product.images[(query.get('index') as unknown as number) || 0].url)
