@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const data = await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: 'info@sapienscafe.fr',
+      to: 'sapienscafe.tech@gmail.com',
       subject: 'Nouveau message contact sapiens.com',
       html,
     });
