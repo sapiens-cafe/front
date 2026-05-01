@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { ViewTransitions } from 'next-view-transitions';
 import fetchContentType from '@/lib/strapi/fetchContentType';
 import { generateMetadataObject } from '@/lib/shared/metadata';
+import { host } from '@/config';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -34,7 +35,10 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     true
   );
-  return generateMetadataObject(pageData?.seo);
+  return {
+    metadataBase: new URL(host),
+    ...generateMetadataObject(pageData?.seo),
+  };
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
