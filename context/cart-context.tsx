@@ -48,7 +48,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const getCartTotal = useCallback(() => {
-    return items.reduce((total, item) => total + item.product.price * item.quantity, 0);
+    return items.reduce((total, item) => total + (item.product.price ?? 0) * item.quantity, 0);
   }, [items]);
 
   return (
