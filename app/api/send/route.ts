@@ -5,7 +5,7 @@ export async function POST(request: Request) {
     const requestBody = await request.json();
     const { data, error } = await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: 'mednajib.slassi@gmail.com',
+      to: 'sapienscafe.tech@gmail.com',
       subject: 'Nouveau message contact sapiens.com',
       html: requestBody.html,
     });
