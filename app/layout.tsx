@@ -16,6 +16,8 @@ const inter = Inter({
   weight: ['400', '500', '600', '700', '800', '900'],
 });
 
+export const dynamic = 'force-dynamic';
+
 export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#06b6d4' },
