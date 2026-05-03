@@ -13,11 +13,11 @@ export const FoodMenuImages = ({ product }: { product: MenuItem }) => {
   const safeIndex = product.images?.[index] ? index : 0;
 
   const [activeThumbnail, setActiveThumbnail] = useState(
-    strapiImage(product.images[safeIndex].url)
+    strapiImage(product.images[safeIndex].image.url)
   );
 
   useEffect(() => {
-    setActiveThumbnail(strapiImage(product.images[safeIndex].url));
+    setActiveThumbnail(strapiImage(product.images[safeIndex].image.url));
   }, [safeIndex, product.images]);
 
   return (
@@ -33,25 +33,25 @@ export const FoodMenuImages = ({ product }: { product: MenuItem }) => {
         >
           <Image
             src={activeThumbnail}
-            alt="Menu Sapiens Café"
+            alt={product.images[safeIndex]?.image.alternativeText || 'Menu Sapiens Café'}
             width={600}
             height={600}
             unoptimized={true}
           />
         </motion.div>
         <div className="flex gap-4 justify-center items-center mt-4">
-          {product.images.map((image, idx) => (
+          {product.images.map((item, idx) => (
             <button
-              onClick={() => setActiveThumbnail(strapiImage(image.url))}
+              onClick={() => setActiveThumbnail(strapiImage(item.image.url))}
               key={'menu-image-' + idx}
               className={cn(
                 'h-20 w-20 rounded-xl',
-                activeThumbnail === strapiImage(image.url)
+                activeThumbnail === strapiImage(item.image.url)
                   ? 'border-2 border-neutral-200'
                   : 'border-2 border-transparent'
               )}
               style={{
-                backgroundImage: `url(${strapiImage(image.url)})`,
+                backgroundImage: `url(${strapiImage(item.image.url)})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',

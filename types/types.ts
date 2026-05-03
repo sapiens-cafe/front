@@ -1,9 +1,14 @@
+export interface MenuImageItem {
+  id: number;
+  image: Image;
+}
+
 export interface MenuItem {
   id: number;
   name?: string;
   slug?: string;
   price?: number;
-  images: any[];
+  images: MenuImageItem[];
 }
 
 export interface Category {

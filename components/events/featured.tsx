@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { Event } from '@/types/types';
 import { strapiImage } from '@/lib/strapi/strapiImage';
-import dayjs from 'dayjs';
+import { dayjs } from '@/lib/dayjs-config';
 import { EventSubscriberModal } from './event-subscriber-modal';
 
 export const Featured = ({ events }: { events: Event[] }) => {
@@ -22,7 +22,7 @@ export const Featured = ({ events }: { events: Event[] }) => {
         <div className="md:col-span-2">
           <FeaturedItem event={eventsSorted[0]} />
           <div className="mt-4">
-            {dayjs(eventsSorted[0]?.datetime).isAfter(dayjs()) && (
+            {dayjs.utc(eventsSorted[0]?.datetime).tz('Europe/Paris').isAfter(dayjs().tz('Europe/Paris')) && (
               <EventSubscriberModal productId={eventsSorted[0].documentId} />
             )}
           </div>
@@ -43,7 +43,7 @@ const FeaturedItem = ({ event }: { event: Event }) => {
       <div className="absolute text-sm top-4 right-2 md:top-10 md:right-10 z-40 bg-white rounded-full pr-1 pl-4 py-1 text-black font-medium flex gap-4 items-center">
         <span>{event.name}</span>
         <span className="bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 text-white px-2 py-1 rounded-full flex items-center gap-2">
-          {dayjs(event.datetime).format('DD/MM/YYYY HH:mm')}
+          {dayjs.utc(event.datetime).tz('Europe/Paris').format('DD/MM/YYYY HH:mm')}
         </span>
       </div>
       <Image

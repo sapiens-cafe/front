@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { IconCheck } from '@tabler/icons-react';
 import { cn } from '@/lib/utils';
 import { strapiImage } from '@/lib/strapi/strapiImage';
-import dayjs from 'dayjs';
+import { dayjs } from '@/lib/dayjs-config';
 import { EventSubscriberModal } from './event-subscriber-modal';
 
 export const SingleEvent = ({ event }: { event: Event }) => {
@@ -60,7 +60,7 @@ export const SingleEvent = ({ event }: { event: Event }) => {
           <div className="flex items-center gap-4 mb-4 mt-6">
             <h2 className="text-2xl font-semibold">{event.name}</h2>
             <p className="bg-white text-xs px-4 py-1 rounded-full text-black w-fit">
-              {dayjs(event.datetime).format('DD/MM/YYYY HH:mm')}
+              {dayjs.utc(event.datetime).tz('Europe/Paris').format('DD/MM/YYYY HH:mm')}
             </p>
           </div>
           <p className="text-base font-normal mb-4 text-neutral-400">{event.description}</p>

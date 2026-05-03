@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { truncate } from '@/lib/utils';
 import { Link } from 'next-view-transitions';
 import { strapiImage } from '@/lib/strapi/strapiImage';
-import dayjs from 'dayjs';
+import { dayjs } from '@/lib/dayjs-config';
 import { EventSubscriberModal } from './event-subscriber-modal';
 
 const pastEventTitle = 'Événements passés';
@@ -18,21 +18,19 @@ export const EventItems = ({
   sub_heading?: string;
   events: Event[];
 }) => {
-  const eventsSortedByDatetimeDesc = events.sort((a, b) =>
-    a.datetime && b.datetime ? new Date(b.datetime).getTime() - new Date(a.datetime).getTime() : 0
-  );
-  const pastEvents = eventsSortedByDatetimeDesc.filter(
-    (event) => event.datetime && new Date(event.datetime) < new Date()
-  );
-  const futureEvents = eventsSortedByDatetimeDesc.filter(
-    (event) => event.datetime && new Date(event.datetime) >= new Date()
-  );
+  const now = new Date();
+  const pastEvents = events
+    .filter((event) => event.datetime && new Date(event.datetime) < now)
+    .sort((a, b) => new Date(b.datetime!).getTime() - new Date(a.datetime!).getTime());
+  const futureEvents = events
+    .filter((event) => event.datetime && new Date(event.datetime) >= now)
+    .sort((a, b) => new Date(a.datetime!).getTime() - new Date(b.datetime!).getTime());
   return (
     <div className="py-20">
       {futureEvents.length > 0 && (
         <div>
           <h2 className="text-2xl md:text-4xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-white to-white mb-2">
-            {futureEventTitle}
+            {futureEventTitle} ({futureEvents.length})
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-20 mt-12">
             {futureEvents.map((event) => (
@@ -73,15 +71,18 @@ const EventItem = ({ event }: { event: Event }) => {
           <div className="flex justify-between">
             <span className="text-white text-base font-medium">{event.name}</span>
             <span className="bg-white text-black shadow-derek text-xs px-2 py-1 rounded-full text-nowrap flex items-center">
-              {dayjs(event.datetime).isAfter(dayjs().startOf('year'))
-                ? dayjs(event.datetime).format('DD/MM HH:mm')
-                : dayjs(event.datetime).format('DD/MM/YYYY HH:mm')}
+              {dayjs
+                .utc(event.datetime)
+                .tz('Europe/Paris')
+                .isAfter(dayjs().tz('Europe/Paris').startOf('year'))
+                ? dayjs.utc(event.datetime).tz('Europe/Paris').format('DD/MM HH:mm')
+                : dayjs.utc(event.datetime).tz('Europe/Paris').format('DD/MM/YYYY HH:mm')}
             </span>
           </div>
           <p className="text-neutral-400 text-sm mt-4 mb-4">{truncate(event.description, 100)}</p>
         </div>
       </Link>
-      {dayjs(event?.datetime).isAfter(dayjs()) && (
+      {dayjs.utc(event?.datetime).tz('Europe/Paris').isAfter(dayjs().tz('Europe/Paris')) && (
         <EventSubscriberModal productId={event.documentId} />
       )}
     </div>

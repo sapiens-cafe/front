@@ -10,7 +10,11 @@ export const metadata: Metadata = {
 };
 
 export default async function FoodMenu() {
-  const pageData = await fetchContentType('food-menu', { filters: { locale: 'fr' } }, true);
+  const pageData = await fetchContentType(
+    'food-menu',
+    { filters: { locale: 'fr' }, populate: { images: { populate: '*' } } },
+    true
+  );
 
   if (!pageData || !pageData.images?.length) {
     notFound();
