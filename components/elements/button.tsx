@@ -9,6 +9,7 @@ interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
   children?: React.ReactNode;
   href?: LinkProps['href'];
   onClick?: () => void;
+  target?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({

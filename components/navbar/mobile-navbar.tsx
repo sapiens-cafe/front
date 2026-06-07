@@ -93,6 +93,7 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo }: Props)
                 variant={index === rightNavbarItems.length - 1 ? 'primary' : 'simple'}
                 as={Link}
                 href={item.URL}
+                target={item.target}
               >
                 {item.text}
               </Button>

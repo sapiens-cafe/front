@@ -25,7 +25,6 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo }: Props
   const { scrollY } = useScroll();
 
   const [showBackground, setShowBackground] = useState(false);
-
   useMotionValueEvent(scrollY, 'change', (value) => {
     if (value > 100) {
       setShowBackground(true);
@@ -82,6 +81,7 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo }: Props
             variant={index === rightNavbarItems.length - 1 ? 'primary' : 'simple'}
             as={Link}
             href={item.URL}
+            target={item.target}
           >
             {item.text}
           </Button>
