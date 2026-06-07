@@ -38,7 +38,7 @@ export const SkeletonTwo = () => {
         }}
         width={500}
         height={300}
-        src={strapiImage('/uploads/menu_food_d283bf833f.png')}
+        src={strapiImage('menu_food_d283bf833f.png')}
         alt="Description"
         unoptimized={true}
       />

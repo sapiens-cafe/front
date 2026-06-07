@@ -71,7 +71,7 @@ export const Features = ({
                   width={400}
                   height={300}
                   unoptimized={true}
-                  src={strapiImage('/uploads/menu_drink_be72e65e69.png')}
+                  src={strapiImage('menu_drink_be72e65e69.png')}
                   alt="Description"
                 />
 
@@ -90,7 +90,7 @@ export const Features = ({
                 }}
                 width={500}
                 height={200}
-                src={strapiImage('/uploads/indoor_no_text_7dd901a4d5.jpg')}
+                src={strapiImage('indoor_no_text_7dd901a4d5.jpg')}
                 unoptimized={true}
                 alt="Description"
               />

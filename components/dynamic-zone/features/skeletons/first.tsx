@@ -16,7 +16,7 @@ export function SkeletonOne() {
             }}
             width={500}
             height={300}
-            src={strapiImage('/uploads/IMG_20250627_WA_0010_9c3914904d.jpg')}
+            src={strapiImage('IMG_20250627_WA_0010_9c3914904d.jpg')}
             unoptimized={true}
             alt="Description"
           />
