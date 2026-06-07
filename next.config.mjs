@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [{ hostname: process.env.IMAGE_HOSTNAME || 'localhost' }],
+    remotePatterns: [
+      { hostname: process.env.IMAGE_HOSTNAME || 'localhost' },
+      { hostname: 'res.cloudinary.com' },
+    ],
   },
   pageExtensions: ['ts', 'tsx'],
   async redirects() {
