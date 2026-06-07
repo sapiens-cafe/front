@@ -56,21 +56,21 @@ const EventItem = ({ event }: { event: Event }) => {
   return (
     <div>
       <Link href={`/events/${event.slug}` as never} className="group relative block">
-        <div className="relative border border-neutral-800 rounded-md overflow-hidden">
+        <div className="relative border border-neutral-800 rounded-md overflow-hidden h-[400px]">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black transition-all duration-200 z-30" />
           <Image
             src={strapiImage(event.images[0].url)}
             alt={event.name}
             width={600}
             height={600}
-            className="h-full w-full object-cover group-hover:scale-105 transition duration-200 h-[500px]"
+            className="w-full h-full object-cover group-hover:scale-105 transition duration-200"
             unoptimized={true}
           />
         </div>
         <div className="mt-8">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-start gap-2">
             <span className="text-white text-base font-medium">{event.name}</span>
-            <span className="bg-white text-black shadow-derek text-xs px-2 py-1 rounded-full text-nowrap flex items-center">
+            <span className="bg-white text-black shadow-derek text-xs px-2 py-1 rounded-full whitespace-nowrap flex items-center tabular-nums shrink-0">
               {dayjs
                 .utc(event.datetime)
                 .tz('Europe/Paris')
